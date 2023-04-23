@@ -1,0 +1,229 @@
+﻿@using EMarketAlex2.Core.Aplication.ViewModels.Anuncios;
+
+@model SaveAnuncioViewModel;
+
+@{
+	bool editMode = Model.IdAnuncio == 0 ? false : true;
+
+	ViewData["Title"] = "Guardar Anuncio";
+
+}
+
+<div class="container-fluid">
+
+	<div class=row>
+
+		<div class="col-6 offset-3">
+
+			<div class="card">
+
+
+				<div class="card-header bg-dark text-light">
+
+					<h4>@(editMode ? $"Editando el anuncio: {Model.nombre_anuncio}.": "Creando un nuevo anuncio.") </h4>
+
+
+				</div>
+
+				<div class="card-body">
+
+					@if(Model.CategoriaList== null || Model.CategoriaList.Count==0){
+
+						<h4>No hay categorias creadas</h4>
+
+						<a asp-controller="Anuncios" asp-action="Index" class="btn btn-warning">Volver atras.</a>
+					}else{
+
+						<form method="post" asp-controller="Anuncios" asp-action="@(editMode ? "Edit": "Create")" enctype="multipart/form-data">
+							
+							<div class="mb-3">
+								<label asp-for="nombre_anuncio" class="form-label">Nombre del Anuncio.</label>
+
+								<input type="text" asp-for="nombre_anuncio" class="form-control">
+								<span asp-validation-for="nombre_anuncio" class="text-danger"></span>
+							</div>
+						<div class="mb-3">
+							<label asp-for="descripcion" class="form-label">Descripcion del anuncio.</label>
+							<input type="text" asp-for="descripcion" class="form-control">
+							<span asp-validation-for="descripcion" class="text-danger"></span>
+
+						</div>
+						<div class="mb-3">
+						<label asp-for="precio" class="form-label">Precio.</label>
+						<input type="number" step="any" asp-for="precio" class="form-control">
+						<span asp-validation-for="precio" class="text-danger"></span>
+
+						</div>
+
+						<div class="mb-3">
+
+							<label asp-for="miCategoriaId" class="form-label">Seleccione una categoria:</label>
+							<select asp-for="miCategoriaId" class="form-select" asp-items="@(new SelectList(Model.CategoriaList,"IdCategoria","Name"))">
+						
+							<option value="0">Seleccione una opcion.</option>
+						</select>
+
+						</div>
+						<div class="mb-3">
+
+						
+							@if(editMode){
+<!--Image-->
+
+    <div class="mb-3 d-flex justify-content-center">
+      
+  
+        <div class="btn btn-primary btn-rounded">
+            <label class="form-label text-white m-1" asp-for="File1">Choose file</label>
+            <input type="file" class="form-control d-none" asp-for="File1" />
+        </div>
+    </div>
+
+<!--Avatar-->
+
+    <div class="d-flex justify-content-center mb-3">
+   
+        <div class="btn btn-primary btn-rounded">
+            <label class="form-label text-white m-1" asp-for="File2">Choose file</label>
+            <input type="file" class="form-control d-none" asp-for="File2" />
+        </div>
+    </div>
+
+									
+										<div class="d-flex justify-content-center mb-3">
+										
+											<div class="btn btn-primary btn-rounded">
+												<label class="form-label text-white m-1" asp-for="File3">Choose file</label>
+												<input type="file" class="form-control d-none" asp-for="File3" />
+											</div>
+										</div>
+								
+
+									
+										<div class="d-flex justify-content-center mb-3">
+
+										
+											<div class="btn btn-primary btn-rounded">
+												<label class="form-label text-white m-1" asp-for="File4">Choose file</label>
+												<input type="file" class="form-control d-none" asp-for="File4" />
+											</div>
+								
+									</div>
+
+										<div class="d-flex justify-content-center mb-4">
+										
+										
+									
+											<div class="btn btn-primary btn-rounded">
+												<label class="form-label text-white m-1" asp-for="File5">Choose file</label>
+												<input type="file" class="form-control d-none" asp-for="File5" />
+											
+										</div>
+									</div>
+
+
+
+
+							}else{
+
+									<!--Image-->
+								
+										<div class="mb-3 d-flex justify-content-center">
+										
+						
+											<div class="btn btn-primary btn-rounded">
+												<label class="form-label text-white m-1" asp-for="File1">Choose file</label>
+
+											<input required asp-for="File1" class="form-control" />
+											</div>
+										</div>
+								
+
+									<!--Avatar-->
+								
+										<div class="d-flex justify-content-center mb-3">
+											
+									
+									
+											<div class="btn btn-primary btn-rounded">
+												<label class="form-label text-white m-1" asp-for="File2">Choose file</label>
+											<input asp-for="File2" class="form-control" />
+											</div>
+										</div>
+									
+									
+										<div class="d-flex justify-content-center mb-3">
+											
+										
+											<div class="btn btn-primary btn-rounded">
+												<label class="form-label text-white m-1" asp-for="File3">Choose file</label>
+											<input asp-for="File3" class="form-control" />
+											</div>
+										</div>
+				
+
+
+									
+										<div class="d-flex justify-content-center mb-3">
+											
+										
+											<div class="btn btn-primary btn-rounded">
+												<label class="form-label text-white m-1" asp-for="File4">Choose file</label>
+											<input asp-for="File4" class="form-control" />
+											</div>
+										</div>
+									
+								
+										<div class="d-flex justify-content-center mb-3">
+											
+										
+											<div class="btn btn-primary btn-rounded">
+												<label class="form-label text-white m-1" asp-for="File5">Choose file</label>
+											<input asp-for="File5" class="form-control" />
+											</div>
+										</div>
+									
+
+							}
+
+							<span asp-validation-for="File1" class="text-danger"></span>
+							<span asp-validation-for="File2" class="text-danger"></span>
+<span asp-validation-for="File3" class="text-danger"></span>
+<span asp-validation-for="File4" class="text-danger"></span>
+<span asp-validation-for="File5" class="text-danger"></span>
+
+
+						</div>
+
+
+						<input type="hidden" asp-for="IdAnuncio">
+
+
+								<button type="submit" class=" btn btn-success text-white">Crear</button>
+						<a asp-controller="Anuncios" asp-action="Index" class="btn btn-warning text-white">Volver atras</a>
+
+						
+						</form>
+
+					}
+
+
+				</div>
+
+
+
+
+			</div>
+
+
+
+
+		</div>
+
+
+
+	</div>
+
+
+
+</div>

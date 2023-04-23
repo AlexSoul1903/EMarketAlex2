@@ -1,0 +1,71 @@
+﻿@using EMarketAlex2.Core.Aplication.ViewModels.Users
+@model SaveUserViewModel
+@{
+    ViewData["Title"] = "Registro";
+}
+<div class="container-fluid">
+   <div class="loginRegister signup">
+        <main>
+            <form enctype="multipart/form-data" asp-action="Register" method="post" class="formLogin signUpForm">
+                <h1 class="signuph1">Registrate</h1>
+        
+                
+                    <div class="nameDiv">
+                        <label asp-for="Nombre" for="Nombre">Nombre</label>
+                        <input asp-for="Nombre" type="text" class="name" name="Nombre" id="" placeholder="Ingresa tu nombre" required>
+                
+                      <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+                <div class="userDiv">
+                    <label asp-for="Username" for="Username">Nombre de usuario</label>
+                    <input asp-for="Username" type="text" class="username" name="Username" id="" placeholder="Entra tu usuario" required>
+                      <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="nameDiv">
+                    <label asp-for="Edad" for="Edad">Edad</label>
+                    <input asp-for="Edad" type="number" class="name" name="Edad" id="" placeholder="Ingresa tu edad" required>
+
+                    <span asp-validation-for="Edad" class="text-danger"></span>
+                </div>
+                
+            
+                <div class="mb-3 imageDiv">
+                    <label asp-for="File">Foto de perfil</label>
+                        <input type="file" asp-for="File" class="form-control" />
+                </div>
+                 
+
+                <div class="userAndEmail">
+                    <div class="TelDiv">
+                        <label asp-for="Phone"  for="Phone">Tel</label>
+                        <input asp-for="Phone" type="tel" class="tel" name="Phone" id="" placeholder="Ingresa tu Teléfono" required >
+                                           <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                    <div class="emailDiv">
+                        <label asp-for="Email" for="Email">Email</label>
+                        <input asp-for="Email" type="email" class="email" name="Email" id="" placeholder="Ingresa tu Email" required>
+                                           <span asp-validation-for="Email" class="text-danger alert-success" role="alert"></span>
+                    </div>
+                </div>
+                <div class="passwordGroup">
+                    <div class="passDiv">
+                        <label asp-for="Password" for="Password">Contraseña</label>
+                        <input asp-for="Password" type="password" class="pass" name="Password" id="" placeholder="Entra tu contraseña" required >
+                                           <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="confirmPassDiv">
+                        <label asp-for="ConfirmPassword" for="confirmPassword">Confirmar Contraseña</label>
+                        <input asp-for="ConfirmPassword" type="password" class="confirmPass" name="confirmPassword" id="" placeholder="Confirma tu contraseña" required>
+                    </div>
+                                       <span asp-validation-for="ConfirmPassword" asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <button class="signUp">Registrate</button>
+                <span class="singUpSpan">Do you have an account? <a asp-controller="User" asp-action="Index" > Inicia Sección</a> </span>
+
+            </form>
+            <div class="loginImg signUpImg">
+                <img src="/css//assets/imgs/amazon.png" alt="A group of friends hanging out">
+            </div>
+        </main>
+    </div>
+

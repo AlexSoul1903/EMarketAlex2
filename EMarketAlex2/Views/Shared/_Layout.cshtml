@@ -1,0 +1,137 @@
+﻿
+@using EMarketAlex2.Core.Aplication.Helpers;
+@using EMarketAlex2.Core.Aplication.ViewModels;
+@using EMarketAlex2.Core.Aplication.ViewModels.Users;
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor httpContextAccess;
+@{
+
+    UserViewModel usuario = httpContextAccess.HttpContext.Session.Get<UserViewModel>("usuario");
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EMarketAxL</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/assets/css/style.css"></link>
+</head>
+<body>
+
+    <header>
+        @if (usuario != null)
+        {
+
+            
+            <section>
+                <div class="navbar" id="navbar">
+                </div>
+                <div class="dashboard nav nav-tabs" id="dashboard">
+                    <div class="logo">
+                        <svg class="w-9" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 54 33">
+                            <path fill="#3080ed" fill-rule="evenodd"
+                              d="M27 0c-7.2 0-11.7 3.6-13.5 10.8 2.7-3.6 5.85-4.95 9.45-4.05 2.054.513 3.522 2.004 5.147 3.653C30.744 13.09 33.808 16.2 40.5 16.2c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C36.756 3.11 33.692 0 27 0zM13.5 16.2C6.3 16.2 1.8 19.8 0 27c2.7-3.6 5.85-4.95 9.45-4.05 2.054.514 3.522 2.004 5.147 3.653C17.244 29.29 20.308 32.4 27 32.4c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C23.256 19.31 20.192 16.2 13.5 16.2z"
+                              clip-rule="evenodd" />
+                        </svg>
+                        <h3>EMarketAxL</h3>
+                    </div>
+                    <div class="infoUser">
+                        <img src="@usuario.ImgRoute" alt="Profile picture">
+                        <div class="UserName">
+                            <span>
+                                <span class="name">@usuario.Username</span>
+                                <img class="icon BlueCheck" title="Verified Account" src="/css/assets/imgs/blueCheck.svg"
+                                 alt="Blue Check Icon">
+                            </span>
+                            <span class="username"></span>
+                        </div>
+                    </div>
+                    <div class="tabsDiv">
+                        <div class="home nav-item">
+                            <img class="icon" src="/css/assets/imgs/home.svg" alt="Home Icon">
+                            <a class="nav-link activo text-light" asp-area="" asp-controller="@(usuario!=null ? "Home":"User")" asp-action="Index">Home</a>
+                        </div>
+                        <div class="friends nav-item">
+                            <img class="icon" src="/css/assets/imgs/ad.png" alt="Ad Icon">
+                            <a class="nav-link bg-light text-dark" asp-area="" asp-controller="Anuncios" asp-action="Index">Mantenimiento de Anuncios</a>
+                        </div>
+                        <div class="friends nav-item">
+                            <img class="icon" src="/css/assets/imgs/estatusIcon.png" alt="Categories Icon">
+                            <a class="nav-link bg-light text-dark" asp-area="" asp-controller="Categorias" asp-action="Index">Mantenimiento de Categorias</a>
+                        </div>
+
+                        <div class="logOut nav-item">
+
+
+                            <img class="icon text-light" src="/css/assets/imgs/logout.svg" alt="Log Out Icon">
+
+                            <a class="nav-link bg-secondary text-light" asp-area="" asp-controller="User" asp-action="CerrarSession">Cerrar Sessión</a>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <!---
+
+
+
+
+                -->
+            <nav class="navbar bg-light navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand text-white fm-bold" asp-area="" asp-controller="Home" asp-action="Index">CarAlexCrud2000</a>
+
+                </div>
+            </nav>
+        }
+        else
+        {
+
+
+
+
+
+            <div class="dashboard nav nav-tabs" id="dashboard">
+                <div class="logo">
+                    <svg class="w-9" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 54 33">
+                        <path fill="#3080ed" fill-rule="evenodd"
+                          d="M27 0c-7.2 0-11.7 3.6-13.5 10.8 2.7-3.6 5.85-4.95 9.45-4.05 2.054.513 3.522 2.004 5.147 3.653C30.744 13.09 33.808 16.2 40.5 16.2c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C36.756 3.11 33.692 0 27 0zM13.5 16.2C6.3 16.2 1.8 19.8 0 27c2.7-3.6 5.85-4.95 9.45-4.05 2.054.514 3.522 2.004 5.147 3.653C17.244 29.29 20.308 32.4 27 32.4c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C23.256 19.31 20.192 16.2 13.5 16.2z"
+                          clip-rule="evenodd" />
+                    </svg>
+                    <h3>EMarketAxL</h3>
+                </div>
+            </div>
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

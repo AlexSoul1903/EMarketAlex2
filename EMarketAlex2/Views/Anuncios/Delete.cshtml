@@ -1,0 +1,45 @@
+﻿@using EMarketAlex2.Core.Aplication.ViewModels.Anuncios
+@model SaveAnuncioViewModel
+
+@{
+
+	ViewData["Title"] = "Eliminar Anuncio";
+
+}
+
+<div class="row">
+
+	<div class="col-6 offset-3">
+
+		<div class="card">
+
+			<div class="card-header bg-danger text-light">
+
+				<h4>Esta seguro de que desea eliminar el producto @Model.nombre_anuncio?</h4>
+
+			</div>
+
+			<div class="card-body">
+			<form method="post" asp-controller="Anuncios" asp-action="Delete">
+
+			<input type="hidden" asp-for="IdAnuncio"/>
+			
+			<button type="submit" class="btn btn-danger">Eliminar</button>
+			<a asp-controller="Anuncios" asp-action="Index" class="btn btn-warning">Cancelar</a>
+
+			</form>
+
+			</div>
+
+
+		</div>
+
+
+
+
+	</div>
+
+
+
+
+</div>

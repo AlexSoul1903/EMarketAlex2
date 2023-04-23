@@ -1,0 +1,55 @@
+﻿@using EMarketAlex2.Core.Aplication.ViewModels.Categorias;
+
+@model SaveCategoriaViewModel
+
+@{
+
+	ViewData["Title"] = "Eliminar categoria";
+
+
+
+}
+
+
+<div class="row">
+
+	<div class="col-6 offset-6">
+		<div class="card">
+
+			<div class="card-header bg-danger text-light">
+
+			<h4>Estas seguro de que quieres eliminar esta categoria @Model.Descripcion?</h4>
+
+
+			</div>
+
+			<div class="card-body">
+
+			<form method="post" asp-controller="Categorias" asp-action="Delete">
+
+
+				<input type="hidden" asp-for="IdCategoria" />
+
+
+			<button type="submit" class="btn btn-danger">Eliminar.</button>
+			<a asp-controller="Categoria" asp-action="Index" class="btn btn-warning">Cancelar.</a>
+
+
+				</form>
+
+			</div>
+
+
+
+
+		</div>
+
+
+
+
+	</div>
+
+
+
+
+</div>

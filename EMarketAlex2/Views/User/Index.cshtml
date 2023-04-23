@@ -1,0 +1,46 @@
+﻿@using EMarketAlex2.Core.Aplication.ViewModels.Users
+@model LoginUserViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+<div class="container-fluid">
+   
+     <div class="loginRegister">
+        
+        <main>
+
+            
+            <form  asp-controller="User" asp-action="Index" method="post" class="formLogin">
+
+                @Html.ValidationSummary(false,"", new{@class="text-danger "})
+                <h1>¡Hola de nuevo!</h1>
+              
+                <span class="subTitle">¡Bienvenido, te estamos esperando!</span>
+               
+                <div class="userDiv">
+                    <label asp-for="Username">Nombre de usuario</label>  
+                    <input asp-for="Username" type="text" class="username" name="Username" id="username" placeholder="Alex19">
+          
+                </div>s
+            <div class="passDiv">
+                <label asp-for="Password" for="Password">Contraseña</label>
+                <input asp-for="Password" type="password" class="pass" name="Password" id="password" placeholder="Ingrese su contraseña" required>
+               
+            </div>
+               
+                 <span class="forgotPass"><a href="/reset" class="">Retablecer contraseña</a></span>
+                <button class="signIn">Iniciar Sección</button>
+                <span class="singUpSpan">¿No tienes una cuenta? <a class="text-danger"  <a asp-controller="User" asp-action="Register"> <br />Registrate</a></span>
+
+            </form>
+            <div class="loginImg">
+                <img src="css/assets/imgs/amazon.png" alt="A group of friends hanging out">
+            </div>
+        </main>
+    </div>
+   
+
+
+                </div>
+     
+        

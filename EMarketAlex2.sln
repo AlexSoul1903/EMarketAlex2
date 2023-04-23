@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EMarketAlex2", "EMarketAlex2\EMarketAlex2.csproj", "{D5B81C70-9EC5-474D-9024-E0F8744481D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{A5737676-ACBF-4DB0-B4DA-4F7822BBD853}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApp", "WebApp", "{F121CDCC-12DE-4BF5-8476-504971B154E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infraestructure", "Infraestructure", "{9E8C8D7F-26BB-40AA-A51C-E019E2F0EF7A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EMarketAlex2.Infraestructure.Persistence", "EMarketAlex2.Infraestructure.Persistence\EMarketAlex2.Infraestructure.Persistence.csproj", "{ECE6A5C9-8327-4201-ADC8-DC419F8F0D57}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{633C4E12-B6EA-40C7-9B6A-5E1EBF170DDC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EMarketAlex2.Core.Aplication", "EMarketAlex2.Core.Aplication\EMarketAlex2.Core.Aplication.csproj", "{040711DF-8798-441E-9204-7EFFC236C3EB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EMarketAlex2.Core.Domain", "EMarketAlex2.Core.Domain\EMarketAlex2.Core.Domain.csproj", "{8836E401-5794-4758-9D86-509687886392}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D5B81C70-9EC5-474D-9024-E0F8744481D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5B81C70-9EC5-474D-9024-E0F8744481D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5B81C70-9EC5-474D-9024-E0F8744481D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5B81C70-9EC5-474D-9024-E0F8744481D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECE6A5C9-8327-4201-ADC8-DC419F8F0D57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECE6A5C9-8327-4201-ADC8-DC419F8F0D57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECE6A5C9-8327-4201-ADC8-DC419F8F0D57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECE6A5C9-8327-4201-ADC8-DC419F8F0D57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{040711DF-8798-441E-9204-7EFFC236C3EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{040711DF-8798-441E-9204-7EFFC236C3EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{040711DF-8798-441E-9204-7EFFC236C3EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{040711DF-8798-441E-9204-7EFFC236C3EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8836E401-5794-4758-9D86-509687886392}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8836E401-5794-4758-9D86-509687886392}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8836E401-5794-4758-9D86-509687886392}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8836E401-5794-4758-9D86-509687886392}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D5B81C70-9EC5-474D-9024-E0F8744481D4} = {F121CDCC-12DE-4BF5-8476-504971B154E2}
+		{F121CDCC-12DE-4BF5-8476-504971B154E2} = {A5737676-ACBF-4DB0-B4DA-4F7822BBD853}
+		{9E8C8D7F-26BB-40AA-A51C-E019E2F0EF7A} = {A5737676-ACBF-4DB0-B4DA-4F7822BBD853}
+		{ECE6A5C9-8327-4201-ADC8-DC419F8F0D57} = {9E8C8D7F-26BB-40AA-A51C-E019E2F0EF7A}
+		{633C4E12-B6EA-40C7-9B6A-5E1EBF170DDC} = {A5737676-ACBF-4DB0-B4DA-4F7822BBD853}
+		{040711DF-8798-441E-9204-7EFFC236C3EB} = {633C4E12-B6EA-40C7-9B6A-5E1EBF170DDC}
+		{8836E401-5794-4758-9D86-509687886392} = {633C4E12-B6EA-40C7-9B6A-5E1EBF170DDC}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DD5C4D37-148F-4D2E-B80C-B6041857E93B}
+	EndGlobalSection
+EndGlobal

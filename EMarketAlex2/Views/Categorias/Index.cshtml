@@ -1,0 +1,87 @@
+﻿@using EMarketAlex2.Core.Aplication.ViewModels.Categorias;
+
+@model List<CategoriasViewModel>
+
+@{
+
+	ViewData["Title"] = "Categorias";
+}
+
+<div class="container-fluid">
+
+	<div class="row mb-3">
+
+		<div class="col-3 offset-9">
+
+			<a asp-controller="Categorias" asp-action="Create" class="btn btn-outline-success">Crear nueva categoria.</a>
+
+		</div>
+
+
+	</div>
+
+	<div class="row">
+		@if(Model ==null || Model.Count==0){
+
+			<h2>No hay categorias creadas.</h2>
+
+
+		}else{
+
+			@foreach (CategoriasViewModel item in Model){
+
+				<div class="col-4">
+
+
+					<div class="card box-shadow-sm">
+
+						<div class="card-header">
+
+							<h2>Categoria: @item.Name</h2>
+
+						</div>
+
+						<div class="card-body">
+
+							<p class="card-text">@item.Descripcion</p>
+
+							<div class="d-flex justify-content-between align-items-center">
+
+								<div class="btn-group">
+									<a asp-controller="Categorias" asp-action="Edit" asp-route-id="@item.IdCategoria" class="btn btn-sm btn-outline-info">Editar</a>
+                                    <a asp-controller="Categorias" asp-action="Delete" asp-route-id="@item.IdCategoria" class="btn btn-sm btn-outline-danger">Borrar</a>
+									
+
+								</div>
+
+								<small class="font-weight-bold fs-6">La cantidad de categorias: @item.CantidadAnunciosCate</small>
+								<small class="font-weight-bold fs-6"></small>
+							</div>
+
+
+						</div>
+
+
+
+
+
+					</div>
+
+
+
+				</div>
+
+
+
+			}
+
+
+
+		}
+
+
+
+	</div>
+
+
+</div>
