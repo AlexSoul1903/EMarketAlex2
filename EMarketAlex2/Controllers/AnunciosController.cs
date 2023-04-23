@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace EMarketAlex2.Controllers
@@ -73,15 +74,19 @@ namespace EMarketAlex2.Controllers
 
             if (anuncioVm.IdAnuncio != 0 && anuncioVm != null)
             {
+
+                
                 anuncioVm.Imagen1 = SubirArchivo(vm.File1, anuncioVm.IdAnuncio);
-            
+
                     anuncioVm.Imagen2 = SubirArchivo(vm.File2, anuncioVm.IdAnuncio);
                 
-             
+
+               
                     anuncioVm.Imagen3 = SubirArchivo(vm.File3, anuncioVm.IdAnuncio);
                 
-              
+               
                     anuncioVm.Imagen4 = SubirArchivo(vm.File4, anuncioVm.IdAnuncio);
+                
 
                     anuncioVm.Imagen5 = SubirArchivo(vm.File5, anuncioVm.IdAnuncio);
                 
@@ -134,20 +139,59 @@ namespace EMarketAlex2.Controllers
             }
 
             SaveAnuncioViewModel anuncioVm = await _anunciosServices.GetByIdAnuncioViewModel(vm.IdAnuncio);
-            vm.Imagen1 = SubirArchivo(vm.File1, vm.IdAnuncio, true, anuncioVm.Imagen1);
-       
-         
+
+            if (anuncioVm.Imagen1 != null)
+            {
+
+                vm.Imagen1 = SubirArchivo(vm.File1, vm.IdAnuncio, true, anuncioVm.Imagen1);
+            }
+            else if (anuncioVm.Imagen1 == null)
+            {
+
+                vm.Imagen1 = anuncioVm.Imagen1;
+            }
+            if (anuncioVm.Imagen2 != null)
+            {
                 vm.Imagen2 = SubirArchivo(vm.File2, vm.IdAnuncio, true, anuncioVm.Imagen2);
-            
-           
+            }else if(anuncioVm.Imagen2 == null)
+            {
+
+                vm.Imagen2 = anuncioVm.Imagen2;
+            }
+
+            if (anuncioVm.Imagen3 != null)
+            {
+
                 vm.Imagen3 = SubirArchivo(vm.File3, vm.IdAnuncio, true, anuncioVm.Imagen3);
-            
-          
+            }
+            else if (anuncioVm.Imagen3 == null)
+            {
+
+                vm.Imagen3 = anuncioVm.Imagen3;
+            }
+
+            if (anuncioVm.Imagen4 != null)
+            {
+
                 vm.Imagen4 = SubirArchivo(vm.File4, vm.IdAnuncio, true, anuncioVm.Imagen4);
-            
-         
+            }
+            else if (anuncioVm.Imagen4 == null)
+            {
+
+                vm.Imagen4 = anuncioVm.Imagen4;
+            }
+            if (anuncioVm.Imagen5 != null)
+            {
+
+
                 vm.Imagen5 = SubirArchivo(vm.File5, vm.IdAnuncio, true, anuncioVm.Imagen5);
-            
+            }
+            else if (anuncioVm.Imagen5 == null)
+            {
+
+                vm.Imagen5 = anuncioVm.Imagen5;
+            }
+
             await _anunciosServices.Update(vm);
 
 
