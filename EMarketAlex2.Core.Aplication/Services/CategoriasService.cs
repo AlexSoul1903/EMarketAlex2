@@ -70,7 +70,7 @@ namespace EMarketAlex2.Core.Aplication.Services
                 Descripcion=categoria.Descripcion,
                 Name=categoria.Name,
                 CantidadAnunciosCate= categoria.Anuncios.Where(anuncio => anuncio.miUserId==_userViewModel.Id).Count(),
-
+                CantidadUsuarioAnun = categoria.Anuncios.Select(anuncio=> anuncio.miUserId).Distinct().Count()
             }).ToList();
 
         }

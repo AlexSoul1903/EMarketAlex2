@@ -17,7 +17,8 @@ namespace EMarketAlex2.Core.Aplication.ViewModels.Anuncios
         public string Imagen3 { get; set; }
         public string Imagen4 { get; set; }
         public string Imagen5 { get; set; }
-
+        public int UserId { get; set; }
+        public int miUserId { get; set; }
         public string CategoryName { get; set; }
         public int CategoryId { get; set; }
     }

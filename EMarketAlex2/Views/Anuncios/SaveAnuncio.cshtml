@@ -199,8 +199,8 @@
 						<input type="hidden" asp-for="IdAnuncio">
 
 
-								<button type="submit" class=" btn btn-success text-white">Crear</button>
-						<a asp-controller="Anuncios" asp-action="Index" class="btn btn-warning text-white">Volver atras</a>
+							<button type="submit" class=" btn btn-success text-white">@if (editMode){<b>Editar</b>} else {<b>Crear</b>}</button>
+							<a asp-controller="Anuncios" asp-action="Index" class="btn btn-warning text-white">Volver atras</a>
 
 						
 						</form>

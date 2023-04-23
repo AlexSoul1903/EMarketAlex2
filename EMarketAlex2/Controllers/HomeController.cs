@@ -1,6 +1,7 @@
 ﻿using EMarketAlex2.Core.Aplication.Interfaces.Services;
 using EMarketAlex2.Core.Aplication.Services;
 using EMarketAlex2.Core.Aplication.ViewModels.Anuncios;
+using EMarketAlex2.Core.Aplication.ViewModels.Users;
 using EMarketAlex2.Middlewares;
 using EMarketAlex2.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +18,7 @@ namespace EMarketAlex2.Controllers
     {
 
         private readonly AnuncioService _anuncioServices;
+ 
         private readonly CategoriasService _categoriasService;
         private readonly ValidarSession _validarSession;
    
@@ -41,7 +43,6 @@ namespace EMarketAlex2.Controllers
             }
 
             ViewBag.CategoriasList = await _categoriasService.GetAllViewModel();
-
             return View(await _anuncioServices.GetAllModelFilter(vm));
          
 

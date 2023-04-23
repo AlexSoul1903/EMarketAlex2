@@ -169,37 +169,35 @@ namespace EMarketAlex2.Core.Aplication.Services
 
             var anuncioList = await _anuncioRepository.GetAllWithIncludeAsync(new List<string> { "categorias" });
 
-            var Lista = anuncioList.Where(anuncio => anuncio.miUserId == _UserViewModel.Id).Select(anuncio => new AnuncioViewModel
+            var Lista = anuncioList.Where(anuncio => anuncio.miUserId != _UserViewModel.Id).Select(anuncio => new AnuncioViewModel
             {
-                nombre_anuncio=anuncio.nombre_anuncio,
-                IdAnuncio=anuncio.IdAnuncio,
-                descripcion=anuncio.descripcion,
-                Imagen1=anuncio.Imagen1,
-                Imagen2=anuncio.Imagen2,
-                Imagen3=anuncio.Imagen3,
-                Imagen4=anuncio.Imagen4,
-                CategoryName= anuncio.categorias.Name,
-                CategoryId= anuncio.miCategoriaId,
-                Imagen5=anuncio.Imagen5,
-                precio=anuncio.precio,
-                CreatedDate =anuncio.CreatedDate,
-                CreatedBy= anuncio.CreatedBy
+                nombre_anuncio = anuncio.nombre_anuncio,
+                IdAnuncio = anuncio.IdAnuncio,
+                descripcion = anuncio.descripcion,
+                Imagen1 = anuncio.Imagen1,
+                Imagen2 = anuncio.Imagen2,
+                Imagen3 = anuncio.Imagen3,
+                Imagen4 = anuncio.Imagen4,
+                CategoryName = anuncio.categorias.Name,
+                CategoryId = anuncio.miCategoriaId,
+                Imagen5 = anuncio.Imagen5,
+                precio = anuncio.precio,
+                CreatedDate = anuncio.CreatedDate,
+                CreatedBy = anuncio.CreatedBy,
+                miUserId=anuncio.miUserId,
+                
 
 
 
 
             }).ToList();
 
-            if (filter.IdCategoria == null)
-            {
-
-
-            }
-            else
+            if (filter.IdCategoria != null)
             {
                 Lista = Lista.Where(anuncio => anuncio.CategoryId == filter.IdCategoria.Value).ToList();
 
             }
+           
 
             return Lista;
 
