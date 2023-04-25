@@ -1,15 +1,13 @@
 ﻿@using EMarketAlex2.Core.Aplication.ViewModels.Anuncios
 @using EMarketAlex2.Core.Aplication.ViewModels.Categorias
 @using EMarketAlex2.Core.Aplication.ViewModels.Users
+@model FilterAnuncioViewModel
 @{
     ViewData["Title"] = "Home";
   
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
 
 <div class="container-fluid">
 
@@ -31,7 +29,7 @@
                         <div class="mb-4">
 
                             <div class="form-check">
-                                <input class="form-check-input" value="null" type="radio" name="IdCategoria" id="category-all" />
+                                <input class="form-check-input" value="null" type="checkbox" name="IdCategorias" id="category-all" />
                                 <label class="form-check-label" for="category-all">Todas</label>
                             </div>
                  
@@ -39,14 +37,14 @@
 
                         </div>
 
-                        @foreach (CategoriasViewModel item in ViewBag.CategoriasList)
+                        @foreach (CategoriasViewModel item in Model.Categorias)
                         {
 
 
 
                             <div class="mb-3">
                                 <div class="form-check">
-                                    <input class="form-check-input" value="@item.IdCategoria" type="radio" name="IdCategoria" id="category-@item.IdCategoria" />
+                                    <input class="form-check-input" value="@item.IdCategoria" type="checkbox" name="IdCategorias" id="category-@item.IdCategoria" />
                                     <label class="form-check-label" for="category-@item.IdCategoria">@item.Name</label>
                                 </div>
                             </div>
@@ -73,13 +71,13 @@
         <div class="row">
 
 
-            @if (Model.Count == 0 || Model==null){
+            @if (Model==null){
 
                 <h2 class="text-danger">No hay anuncios disponibles.</h2>
             }else{
 
            
-                @foreach (AnuncioViewModel item in Model)
+                @foreach (AnuncioViewModel item in Model.anuncioslist)
                 {
                
                    
@@ -137,7 +135,9 @@
 
                                 <p class="card-text">@item.descripcion</p>
                                 <p class="card-text">$@item.precio</p>
+                                <p class="card-text">Vendedor: @item.CreatedBy</p>
 
+                                <a asp-controller="Home" asp-route-id="@item.IdAnuncio" asp-action="Detalles" class="btn btn-outline-warning">Detalles.</a>
                                 </div>
 
 

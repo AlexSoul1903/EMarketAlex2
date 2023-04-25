@@ -42,7 +42,7 @@ namespace EMarketAlex2.Infraestructure.Persistence.Contexts
                         entrada.Entity.CreatedDate = DateTime.Now;
                         if (vm != null)
                         {
-                            entrada.Entity.CreatedBy = "Nombre:" + vm.Nombre + ", Username: " + vm.Username;
+                            entrada.Entity.CreatedBy = vm.Username;
                         }
                         else
                         {

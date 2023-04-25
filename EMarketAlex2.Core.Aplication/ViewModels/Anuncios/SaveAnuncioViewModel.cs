@@ -55,6 +55,7 @@ namespace EMarketAlex2.Core.Aplication.ViewModels.Anuncios
         public IFormFile File5 { get; set; }
 
         public List<CategoriasViewModel> CategoriaList { get; set; }
+        public string CategoryName { get; set; }
     }
 
 

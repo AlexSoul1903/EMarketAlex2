@@ -151,7 +151,7 @@ namespace EMarketAlex2.Core.Aplication.Services
         public async Task<List<UserViewModel>> GetAllViewModel()
         {
 
-            var userList = await _userRepository.GetAllWithIncludeAsync(new List<string> { "estatus" });
+            var userList = await _userRepository.GetAllWithIncludeAsync(new List<string> { "anuncios" });
 
             return userList.Select(user => new UserViewModel
             {

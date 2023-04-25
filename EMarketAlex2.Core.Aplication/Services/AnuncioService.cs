@@ -110,6 +110,7 @@ namespace EMarketAlex2.Core.Aplication.Services
                 Imagen5=anuncio.Imagen5,
                 CreatedDate = anuncio.CreatedDate,
                 CreatedBy = anuncio.CreatedBy
+                
 
 
             }).ToList();
@@ -124,8 +125,9 @@ namespace EMarketAlex2.Core.Aplication.Services
         {
             var anuncio = await _anuncioRepository.GetByIdAsync(Id);
 
-            SaveAnuncioViewModel vm = new();
 
+            SaveAnuncioViewModel vm = new();
+           
             vm.IdAnuncio = anuncio.IdAnuncio;
             vm.miCategoriaId = anuncio.miCategoriaId;
             vm.descripcion = anuncio.descripcion;
@@ -139,6 +141,8 @@ namespace EMarketAlex2.Core.Aplication.Services
             vm.Imagen5 = anuncio.Imagen5;
             vm.CreatedDate = anuncio.CreatedDate;
             vm.CreatedBy = anuncio.CreatedBy;
+           
+           
 
             return vm;
 
@@ -164,12 +168,15 @@ namespace EMarketAlex2.Core.Aplication.Services
            
         }
 
-        public async Task<List<AnuncioViewModel>>GetAllModelFilter(FilterAnuncioViewModel filter)
+   
+  
+
+        public async Task<List<AnuncioViewModel>>GetAllModelFilter()
         {
 
-            var anuncioList = await _anuncioRepository.GetAllWithIncludeAsync(new List<string> { "categorias" });
+            var anuncioList = await _anuncioRepository.GetAllWithIncludeAsync(new List<string> { "categorias","user"});
 
-            var Lista = anuncioList.Where(anuncio => anuncio.miUserId != _UserViewModel.Id).Select(anuncio => new AnuncioViewModel
+           return anuncioList.Where(anuncio => anuncio.miUserId != _UserViewModel.Id).Select(anuncio => new AnuncioViewModel
             {
                 nombre_anuncio = anuncio.nombre_anuncio,
                 IdAnuncio = anuncio.IdAnuncio,
@@ -189,18 +196,20 @@ namespace EMarketAlex2.Core.Aplication.Services
 
 
 
-
             }).ToList();
 
-            if (filter.IdCategoria != null)
-            {
-                Lista = Lista.Where(anuncio => anuncio.CategoryId == filter.IdCategoria.Value).ToList();
 
-            }
-           
+        }
 
-            return Lista;
+        public async Task<List<AnuncioViewModel>> Filtro (List<int> IdCategorias)
+        {
 
+            List<AnuncioViewModel> anuncioViewModelsSinFiltro = await GetAllModelFilter();
+            List<AnuncioViewModel> anuncioViewModelsFiltro = new();
+
+            anuncioViewModelsFiltro = anuncioViewModelsSinFiltro.Where(anuncio => IdCategorias.Contains(anuncio.CategoryId)).ToList();
+
+            return anuncioViewModelsFiltro;
         }
     }
 }
