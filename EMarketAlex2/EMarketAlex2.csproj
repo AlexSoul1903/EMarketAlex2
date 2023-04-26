@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\EMarketAlex2.Core.Aplication\EMarketAlex2.Core.Aplication.csproj" />
     <ProjectReference Include="..\EMarketAlex2.Infraestructure.Persistence\EMarketAlex2.Infraestructure.Persistence.csproj" />
+    <ProjectReference Include="..\EMarketAlex2.Infraestructure.Shared\EMarketAlex2.Infraestructure.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

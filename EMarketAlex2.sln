@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EMarketAlex2.Core.Aplicatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EMarketAlex2.Core.Domain", "EMarketAlex2.Core.Domain\EMarketAlex2.Core.Domain.csproj", "{8836E401-5794-4758-9D86-509687886392}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EMarketAlex2.Infraestructure.Shared", "EMarketAlex2.Infraestructure.Shared\EMarketAlex2.Infraestructure.Shared.csproj", "{B2144519-364A-4E8C-A316-B3288BAE8C24}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{8836E401-5794-4758-9D86-509687886392}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8836E401-5794-4758-9D86-509687886392}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8836E401-5794-4758-9D86-509687886392}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2144519-364A-4E8C-A316-B3288BAE8C24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2144519-364A-4E8C-A316-B3288BAE8C24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2144519-364A-4E8C-A316-B3288BAE8C24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2144519-364A-4E8C-A316-B3288BAE8C24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{633C4E12-B6EA-40C7-9B6A-5E1EBF170DDC} = {A5737676-ACBF-4DB0-B4DA-4F7822BBD853}
 		{040711DF-8798-441E-9204-7EFFC236C3EB} = {633C4E12-B6EA-40C7-9B6A-5E1EBF170DDC}
 		{8836E401-5794-4758-9D86-509687886392} = {633C4E12-B6EA-40C7-9B6A-5E1EBF170DDC}
+		{B2144519-364A-4E8C-A316-B3288BAE8C24} = {9E8C8D7F-26BB-40AA-A51C-E019E2F0EF7A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DD5C4D37-148F-4D2E-B80C-B6041857E93B}

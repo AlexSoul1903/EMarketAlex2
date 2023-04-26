@@ -1,5 +1,6 @@
 using EMarketAlex2.Core.Aplication;
 using EMarketAlex2.Infraestructure.Persistence;
+using EMarketAlex2.Infraestructure.Shared;
 using EMarketAlex2.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +31,7 @@ namespace EMarketAlex2
             services.AddSession();
             services.AddPersistenceInfraestructure(Configuration);
             services.addAplicationLayer(Configuration);
+            services.addSharedInfraestructure(Configuration);
             services.AddControllersWithViews();
             services.AddTransient<ValidarSession, ValidarSession>();
 

@@ -1,4 +1,5 @@
-﻿using EMarketAlex2.Core.Aplication.Interfaces.Repositories;
+﻿using EMarketAlex2.Core.Aplication.Dtos.Email;
+using EMarketAlex2.Core.Aplication.Interfaces.Repositories;
 using EMarketAlex2.Core.Aplication.Interfaces.Services;
 using EMarketAlex2.Core.Aplication.ViewModels.Users;
 using EMarketAlex2.Core.Domain.Entities;
@@ -15,13 +16,13 @@ namespace EMarketAlex2.Core.Aplication.Services
     {
 
         private readonly IUserRepository _userRepository;
+        private readonly IEmailService _emailService;
 
-
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, IEmailService emailService)
         {
 
             _userRepository = userRepository;
-
+            _emailService = emailService;
         }
 
         public async Task<SaveUserViewModel> add(SaveUserViewModel vm)
@@ -54,6 +55,15 @@ namespace EMarketAlex2.Core.Aplication.Services
             userVm.Username = user.Username;
             userVm.Password = user.Password;
             userVm.ImgRoute = user.ImgRoute;
+
+            _emailService.SendAsync(new EmailRequest
+            {
+                To = user.Email,
+                Subject= "Bienvenido a la Tieda Virtual de Alex",
+                Body = $"<h1>Bienvenido al EMarket donde podras vender los mejores productos </h1> <p>Tu nombre de usuario es {user.Username}</p>"
+
+            });
+
             return userVm;
 
 

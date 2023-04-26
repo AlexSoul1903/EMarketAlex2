@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MailKit" Version="4.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="5.0.0" />
+    <PackageReference Include="MimeKit" Version="4.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EMarketAlex2.Core.Aplication\EMarketAlex2.Core.Aplication.csproj" />
+    <ProjectReference Include="..\EMarketAlex2.Core.Domain\EMarketAlex2.Core.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
