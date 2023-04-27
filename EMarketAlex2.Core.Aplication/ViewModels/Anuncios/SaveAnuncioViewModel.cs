@@ -27,6 +27,7 @@ namespace EMarketAlex2.Core.Aplication.ViewModels.Anuncios
         public int precio { get; set; }
         [Range(1, int.MaxValue, ErrorMessage = "Debe colocar la categoria del anuncio")]
         public int miCategoriaId { get; set; }
+        public int miUserId { get; set; }
 
 
         [DataType(DataType.Text)]

@@ -32,7 +32,7 @@ namespace EMarketAlex2.Infraestructure.Persistence.Repositories
 
         }
 
-        public virtual async Task DeleteAsync(Entidad entidad)
+        public virtual async Task DeleteAsync(Entidad entidad, int id)
         {
             _dbContext.Remove(entidad);
 
@@ -54,10 +54,11 @@ namespace EMarketAlex2.Infraestructure.Persistence.Repositories
             return await _dbContext.Set<Entidad>().FindAsync(Id);
         }
 
-        public virtual async Task UpdateAsync(Entidad entidad)
+        public virtual async Task UpdateAsync(Entidad entidad, int id)
         {
 
-            _dbContext.Entry(entidad).State = EntityState.Modified;
+            Entidad entry = await _dbContext.Set<Entidad>().FindAsync(id);
+            _dbContext.Entry(entry).CurrentValues.SetValues(entidad);
             await _dbContext.SaveChangesAsync();
 
         }

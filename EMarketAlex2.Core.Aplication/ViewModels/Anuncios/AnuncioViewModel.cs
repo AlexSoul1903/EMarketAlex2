@@ -1,4 +1,6 @@
-﻿using EMarketAlex2.Core.Domain.Common;
+﻿using EMarketAlex2.Core.Aplication.ViewModels.Categorias;
+using EMarketAlex2.Core.Aplication.ViewModels.Users;
+using EMarketAlex2.Core.Domain.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +19,14 @@ namespace EMarketAlex2.Core.Aplication.ViewModels.Anuncios
         public string Imagen3 { get; set; }
         public string Imagen4 { get; set; }
         public string Imagen5 { get; set; }
-        public int UserId { get; set; }
         public int miUserId { get; set; }
         public string userName { get; set; }
         public string CategoryName { get; set; }
-        public int CategoryId { get; set; }
+        public int miCategoriaId {get; set; }
+
+
+        public UserViewModel user { get; set; }
+        public CategoriasViewModel categorias { get; set; }
     }
 
 

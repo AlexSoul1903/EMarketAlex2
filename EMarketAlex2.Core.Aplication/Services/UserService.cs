@@ -1,4 +1,5 @@
-﻿using EMarketAlex2.Core.Aplication.Dtos.Email;
+﻿using AutoMapper;
+using EMarketAlex2.Core.Aplication.Dtos.Email;
 using EMarketAlex2.Core.Aplication.Interfaces.Repositories;
 using EMarketAlex2.Core.Aplication.Interfaces.Services;
 using EMarketAlex2.Core.Aplication.ViewModels.Users;
@@ -12,55 +13,35 @@ using System.Threading.Tasks;
 
 namespace EMarketAlex2.Core.Aplication.Services
 {
-    public class UserService : IUserServices
+    public class UserService: GenericService<SaveUserViewModel,UserViewModel,Users>, IUserServices
     {
 
         private readonly IUserRepository _userRepository;
         private readonly IEmailService _emailService;
+        private readonly IMapper _mapper;
 
-        public UserService(IUserRepository userRepository, IEmailService emailService)
+        public UserService(IUserRepository userRepository, IEmailService emailService,IMapper mapper): base(userRepository,mapper)
         {
 
             _userRepository = userRepository;
             _emailService = emailService;
+            _mapper = mapper;
         }
 
-        public async Task<SaveUserViewModel> add(SaveUserViewModel vm)
+        public override async Task<SaveUserViewModel> add(SaveUserViewModel vm)
         {
 
 
+            SaveUserViewModel userVm = await base.add(vm);
+           
 
-            Users user = new();
+          
 
-            user.Edad = vm.Edad;
-            user.Email = vm.Email;
-            user.Nombre = vm.Nombre;
-            user.Phone = vm.Phone;
-            user.Username = vm.Username;
-            user.Password = vm.Password;
-            user.ImgRoute = vm.ImgRoute;
-
-
-            user = await _userRepository.AddAsync(user);
-
-            SaveUserViewModel userVm = new();
-
-
-            userVm.Id = user.Id;
-            userVm.Edad = user.Edad;
-
-            userVm.Email = user.Email;
-            userVm.Nombre = user.Nombre;
-            userVm.Phone = user.Phone;
-            userVm.Username = user.Username;
-            userVm.Password = user.Password;
-            userVm.ImgRoute = user.ImgRoute;
-
-            _emailService.SendAsync(new EmailRequest
+         await _emailService.SendAsync(new EmailRequest
             {
-                To = user.Email,
+                To = userVm.Email,
                 Subject= "Bienvenido a la Tieda Virtual de Alex",
-                Body = $"<h1>Bienvenido al EMarket donde podras vender los mejores productos </h1> <p>Tu nombre de usuario es {user.Username}</p>"
+                Body = $"<h1>Bienvenido al EMarket donde podras vender los mejores productos </h1> <p>Tu nombre de usuario es {userVm.Username}</p>"
 
             });
 
@@ -70,46 +51,7 @@ namespace EMarketAlex2.Core.Aplication.Services
 
         }
 
-        public async Task<SaveUserViewModel> GetByIdAnuncioViewModel(int Id)
-        {
-
-
-            var user = await _userRepository.GetByIdAsync(Id);
-
-            SaveUserViewModel vm = new();
-
-            vm.Id = user.Id;
-            vm.Email = user.Email;
-            vm.Edad = user.Edad;
-            vm.Phone = user.Phone;
-            vm.Password = user.Password;
-            vm.Username = user.Username;
-            vm.Nombre = user.Nombre;
-            vm.ImgRoute = user.ImgRoute;
-
-            return vm;
-
-        }
-
-        public async Task Update(SaveUserViewModel vm)
-        {
-
-
-
-            Users user = await _userRepository.GetByIdAsync(vm.Id);
-            user.Id = vm.Id;
-            user.Edad = vm.Edad;
-            user.Email = vm.Email;
-            user.Nombre = vm.Nombre;
-            user.Phone = vm.Phone;
-            user.Username = vm.Username;
-            user.Password = vm.Password;
-            user.ImgRoute = vm.ImgRoute;
-
-            await _userRepository.UpdateAsync(user);
-
-
-        }
+    
 
 
         public async Task<UserViewModel> LoginAsync(LoginUserViewModel vm)
@@ -124,15 +66,8 @@ namespace EMarketAlex2.Core.Aplication.Services
 
             }
 
-            UserViewModel userVm = new();
-            userVm.Id = user.Id;
-            userVm.Edad = user.Edad;
-            userVm.Email = user.Email;
-            userVm.Nombre = user.Nombre;
-            userVm.Phone = user.Phone;
-            userVm.Username = user.Username;
-            userVm.Password = user.Password;
-            userVm.ImgRoute = user.ImgRoute;
+            UserViewModel userVm = _mapper.Map<UserViewModel>(user);
+         
 
             return userVm;
 
@@ -140,25 +75,10 @@ namespace EMarketAlex2.Core.Aplication.Services
         }
 
 
-        public async Task Delete(SaveUserViewModel vm)
-        {
-
-            Users user = new();
-            user.Id = vm.Id;
-            user.Edad = vm.Edad;
-            user.Email = vm.Email;
-            user.Nombre = vm.Nombre;
-            user.Phone = vm.Phone;
-            user.Username = vm.Username;
-            user.Password = vm.Password;
-
-            await _userRepository.DeleteAsync(user);
-
-        }
+    
 
 
-
-        public async Task<List<UserViewModel>> GetAllViewModel()
+        public async Task<List<UserViewModel>> GetAllViewModelWithInclude()
         {
 
             var userList = await _userRepository.GetAllWithIncludeAsync(new List<string> { "anuncios" });

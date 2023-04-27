@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using EMarketAlex2.Core.Domain.Common;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EMarketAlex2.Core.Aplication.ViewModels.Users
 {
-    public class SaveUserViewModel
+    public class SaveUserViewModel:AuditBaseEntity
     {
 
 

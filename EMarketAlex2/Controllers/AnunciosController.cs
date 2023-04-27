@@ -39,7 +39,7 @@ namespace EMarketAlex2.Controllers
 
             }
 
-            return View(await _anunciosServices.GetAllViewModel());
+            return View(await _anunciosServices.GetAllViewModelWithInclude());
         }
 
         public async Task<IActionResult> Create()
@@ -90,7 +90,7 @@ namespace EMarketAlex2.Controllers
 
                     anuncioVm.Imagen5 = SubirArchivo(vm.File5, anuncioVm.IdAnuncio);
                 
-                await _anunciosServices.Update(anuncioVm);
+                await _anunciosServices.Update(anuncioVm,anuncioVm.IdAnuncio);
             }
             
 
@@ -192,7 +192,7 @@ namespace EMarketAlex2.Controllers
                 vm.Imagen5 = anuncioVm.Imagen5;
             }
 
-            await _anunciosServices.Update(vm);
+            await _anunciosServices.Update(vm,vm.IdAnuncio);
 
 
             return RedirectToRoute(new { controller = "Anuncios", action = "Index" });
@@ -222,7 +222,7 @@ namespace EMarketAlex2.Controllers
 
             }
 
-            await _anunciosServices.Delete(vm);
+            await _anunciosServices.Delete(vm,vm.IdAnuncio);
 
             string basePath= "/css/assets/imgs/AnunciosPhotos/" + vm.IdAnuncio;
 

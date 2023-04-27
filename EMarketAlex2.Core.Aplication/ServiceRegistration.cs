@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,7 +21,7 @@ namespace EMarketAlex2.Core.Aplication
         {
             #region "Services"
 
-
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddTransient<IAnunciosServices, AnuncioService>();
 
            services.AddTransient<ICategoriasServices, CategoriasService>();

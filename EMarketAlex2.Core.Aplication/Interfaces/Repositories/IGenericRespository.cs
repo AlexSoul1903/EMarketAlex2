@@ -11,10 +11,10 @@ namespace EMarketAlex2.Core.Aplication.Interfaces.Repositories
     {
 
         Task<Entidad> AddAsync(Entidad entidad);
-        Task DeleteAsync(Entidad entidad);
+        Task DeleteAsync(Entidad entidad, int id);
         Task<Entidad> GetByIdAsync(int Id);
         Task<List<Entidad>> GetAllAsync();
-        Task UpdateAsync(Entidad entidad);
+        Task UpdateAsync(Entidad entidad, int id);
         Task<List<Entidad>> GetAllWithIncludeAsync(List<string> propiedades);
 
     }

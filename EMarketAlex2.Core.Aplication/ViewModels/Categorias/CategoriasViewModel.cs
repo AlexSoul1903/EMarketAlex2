@@ -1,8 +1,8 @@
-﻿using System;
+﻿using EMarketAlex2.Core.Aplication.ViewModels.Anuncios;
+using EMarketAlex2.Core.Domain.Entities;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace EMarketAlex2.Core.Aplication.ViewModels.Categorias
 {
@@ -15,6 +15,7 @@ namespace EMarketAlex2.Core.Aplication.ViewModels.Categorias
 
       public int CantidadUsuarioAnun { get; set; }
 
+        public ICollection<AnuncioViewModel> Anuncios { get; set; }
 
     }
 }

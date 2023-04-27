@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EMarketAlex2.Core.Aplication.ViewModels.Anuncios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,8 @@ namespace EMarketAlex2.Core.Aplication.ViewModels.Users
         public string Password { get; set; }
         public int Edad { get; set; }
         public string ImgRoute { get; set; }
+
+        public ICollection<AnuncioViewModel> anuncios { get; set; }
 
     }
 }

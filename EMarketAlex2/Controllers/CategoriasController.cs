@@ -35,7 +35,7 @@ namespace EMarketAlex2.Controllers
 
 
 
-            return View(await _categoriasServices.GetAllViewModel());
+            return View(await _categoriasServices.GetAllViewModeWithIncludel());
         }
 
         public IActionResult Create()
@@ -93,7 +93,7 @@ namespace EMarketAlex2.Controllers
 
             }
 
-            return View(await _categoriasServices.GetByIdAnuncioViewModel(Id));
+            return View("SaveCategorias", await _categoriasServices.GetByIdAnuncioViewModel(Id));
 
         }
 
@@ -114,7 +114,7 @@ namespace EMarketAlex2.Controllers
 
             }
 
-            await _categoriasServices.Update(vm);
+            await _categoriasServices.Update(vm,vm.IdCategoria);
 
 
 
@@ -154,7 +154,7 @@ namespace EMarketAlex2.Controllers
 
             }
 
-            await _categoriasServices.Delete(vm);
+            await _categoriasServices.Delete(vm,vm.IdCategoria);
 
 
             return RedirectToRoute(new { controller = "Categorias", action = "Index" });

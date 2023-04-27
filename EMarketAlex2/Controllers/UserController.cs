@@ -115,7 +115,7 @@ namespace EMarketAlex2.Controllers
 
                 userVm.ImgRoute = SubirArchivo(RegisUservm.File, userVm.Id);
 
-                await _userServices.Update(userVm);
+                await _userServices.Update(userVm,userVm.Id);
 
 
             }

@@ -1,4 +1,5 @@
-﻿using EMarketAlex2.Core.Aplication.Helpers;
+﻿using AutoMapper;
+using EMarketAlex2.Core.Aplication.Helpers;
 using EMarketAlex2.Core.Aplication.Interfaces.Repositories;
 using EMarketAlex2.Core.Aplication.Interfaces.Services;
 using EMarketAlex2.Core.Aplication.ViewModels.Anuncios;
@@ -13,85 +14,39 @@ using System.Threading.Tasks;
 
 namespace EMarketAlex2.Core.Aplication.Services
 {
-    public class AnuncioService:IAnunciosServices
+    public class AnuncioService:GenericService<SaveAnuncioViewModel,AnuncioViewModel,Anuncios>,IAnunciosServices
 
     {
 
         private readonly IAnuncioRepository _anuncioRepository;
         private readonly UserViewModel _UserViewModel;
         private readonly IHttpContextAccessor _httpContextAccessor;
-
-        public AnuncioService(IAnuncioRepository anuncioRepository, IHttpContextAccessor httpContextAccessor)
+        private readonly IMapper _mapper;
+        public AnuncioService(IAnuncioRepository anuncioRepository, IHttpContextAccessor httpContextAccessor,IMapper mapper):base(anuncioRepository,mapper)
         {
             _anuncioRepository = anuncioRepository;
             _httpContextAccessor = httpContextAccessor;
             _UserViewModel = _httpContextAccessor.HttpContext.Session.Get<UserViewModel>("usuario");
+            _mapper=mapper;
 
         }
 
 
-        public async Task <SaveAnuncioViewModel> add(SaveAnuncioViewModel vm)
+        public override async Task <SaveAnuncioViewModel> add(SaveAnuncioViewModel vm)
        {
 
 
 
-            Anuncios anuncio = new();
-
-            
-            anuncio.precio = vm.precio;
-            anuncio.descripcion = vm.descripcion;
-            anuncio.miCategoriaId = vm.miCategoriaId;
-            anuncio.nombre_anuncio = vm.nombre_anuncio;
-            anuncio.Imagen1 = vm.Imagen1;
-            anuncio.Imagen2 = vm.Imagen2;
-            anuncio.Imagen3 = vm.Imagen3;
-            anuncio.Imagen4 = vm.Imagen4;
-            anuncio.Imagen5 = vm.Imagen5;
-            anuncio.miUserId = _UserViewModel.Id;
-
-            anuncio = await _anuncioRepository.AddAsync(anuncio);
-
-            SaveAnuncioViewModel anuncioVm = new SaveAnuncioViewModel();
-
-            anuncioVm.precio = anuncio.precio;
-            anuncioVm.descripcion = anuncio.descripcion;
-            anuncioVm.miCategoriaId = anuncio.miCategoriaId;
-            anuncioVm.IdAnuncio = anuncio.IdAnuncio;
-            anuncioVm.nombre_anuncio = anuncio.nombre_anuncio;
-
-            anuncioVm.Imagen1= vm.Imagen1;
-            anuncioVm.Imagen2 =vm.Imagen2;
-            anuncioVm.Imagen3 = vm.Imagen3;
-            anuncioVm.Imagen4 = vm.Imagen4;
-            anuncioVm.Imagen5 = vm.Imagen5;
-
-           return anuncioVm;
+            vm.miUserId = _UserViewModel.Id;
+           
+            return await base.add(vm);
 
 
         }
 
-        public async Task Delete(SaveAnuncioViewModel vm)
-        {
+       
 
-            Anuncios anuncios = new();
-            anuncios.IdAnuncio = vm.IdAnuncio;
-            anuncios.descripcion = vm.descripcion;
-            anuncios.miCategoriaId=vm.miCategoriaId;
-            anuncios.nombre_anuncio=vm.nombre_anuncio;
-            anuncios.precio = vm.precio;
-
-            anuncios.Imagen1 = vm.Imagen1;
-            anuncios.Imagen2 = vm.Imagen2;
-            anuncios.Imagen3 = vm.Imagen3;
-            anuncios.Imagen4 = vm.Imagen4;
-            anuncios.Imagen5 = vm.Imagen5;
-
-            anuncios = await _anuncioRepository.GetByIdAsync(vm.IdAnuncio);
-            await _anuncioRepository.DeleteAsync(anuncios);
-
-        }
-
-        public async Task<List<AnuncioViewModel>> GetAllViewModel()
+        public async Task<List<AnuncioViewModel>> GetAllViewModelWithInclude()
         {
             var anuncioList = await  _anuncioRepository.GetAllWithIncludeAsync(new List<string> { "categorias" });
 
@@ -121,50 +76,15 @@ namespace EMarketAlex2.Core.Aplication.Services
             throw new NotImplementedException();
         }
 
-        public async Task<SaveAnuncioViewModel> GetByIdAnuncioViewModel(int Id)
-        {
-            var anuncio = await _anuncioRepository.GetByIdAsync(Id);
+       
 
-
-            SaveAnuncioViewModel vm = new();
-           
-            vm.IdAnuncio = anuncio.IdAnuncio;
-            vm.miCategoriaId = anuncio.miCategoriaId;
-            vm.descripcion = anuncio.descripcion;
-            vm.precio = anuncio.precio;
-            vm.nombre_anuncio = anuncio.nombre_anuncio;
-            vm.Imagen1 = anuncio.Imagen1;
-            vm.Imagen2 = anuncio.Imagen2;
-            vm.Imagen3 = anuncio.Imagen3;
-            
-            vm.Imagen4 = anuncio.Imagen4;
-            vm.Imagen5 = anuncio.Imagen5;
-            vm.CreatedDate = anuncio.CreatedDate;
-            vm.CreatedBy = anuncio.CreatedBy;
-           
-           
-
-            return vm;
-
-        }
-
-        public async Task Update(SaveAnuncioViewModel vm)
+        public override async Task Update(SaveAnuncioViewModel vm,int id)
         {
 
-            Anuncios anuncio = await _anuncioRepository.GetByIdAsync(vm.IdAnuncio);
 
-            anuncio.IdAnuncio = vm.IdAnuncio;
-            anuncio.Imagen1 = vm.Imagen1;
-            anuncio.Imagen2 = vm.Imagen2;
-            anuncio.Imagen3 = vm.Imagen3;
-            anuncio.Imagen4 = vm.Imagen4;
-            anuncio.Imagen5 = vm.Imagen5;
-            anuncio.miCategoriaId = vm.miCategoriaId;
-            anuncio.nombre_anuncio = vm.nombre_anuncio;
-            anuncio.precio = vm.precio;
-            vm.descripcion = vm.descripcion;
-           
-            await _anuncioRepository.UpdateAsync(anuncio);
+            vm.miUserId = _UserViewModel.Id;
+
+            await base.Update(vm,id);
            
         }
 
@@ -186,7 +106,7 @@ namespace EMarketAlex2.Core.Aplication.Services
                 Imagen3 = anuncio.Imagen3,
                 Imagen4 = anuncio.Imagen4,
                 CategoryName = anuncio.categorias.Name,
-                CategoryId = anuncio.miCategoriaId,
+               miCategoriaId = anuncio.miCategoriaId,
                 Imagen5 = anuncio.Imagen5,
                 precio = anuncio.precio,
                 CreatedDate = anuncio.CreatedDate,
@@ -207,7 +127,7 @@ namespace EMarketAlex2.Core.Aplication.Services
             List<AnuncioViewModel> anuncioViewModelsSinFiltro = await GetAllModelFilter();
             List<AnuncioViewModel> anuncioViewModelsFiltro = new();
 
-            anuncioViewModelsFiltro = anuncioViewModelsSinFiltro.Where(anuncio => IdCategorias.Contains(anuncio.CategoryId)).ToList();
+            anuncioViewModelsFiltro = anuncioViewModelsSinFiltro.Where(anuncio => IdCategorias.Contains(anuncio.miCategoriaId)).ToList();
 
             return anuncioViewModelsFiltro;
         }

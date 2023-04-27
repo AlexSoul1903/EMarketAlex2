@@ -32,6 +32,7 @@ namespace EMarketAlex2
             services.AddPersistenceInfraestructure(Configuration);
             services.addAplicationLayer(Configuration);
             services.addSharedInfraestructure(Configuration);
+
             services.AddControllersWithViews();
             services.AddTransient<ValidarSession, ValidarSession>();
 
